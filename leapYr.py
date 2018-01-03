@@ -1,75 +1,91 @@
-def is_leap(year):
-    leap = False
-
-    while year % 4 == 0:
-
-        if year % 100 == 0:
-            if year % 400 == 0:
-                leap = True
-            else:
-                leap = False
-    return leap
-
-def include_month_year(sm):
-
-        if sm >= 3:
-            return False
-
-        else:
-            return True
-
-def include_day_year(sm, sd)
-
-
-        if starting month is greater then 3 then we should not include the month
-
-            if strating month is less then 3 then we should include the month
-
-     # extending February to 29 days rather than 28
-
-        if starting month is 2 then the day should be less then 29 to include
-
-
-
-
-
-
-
-
-leap_year=()
-for cy in range(cy,ey,1):
-
-    if is_leap(cy):
-        leap_year.extend(cy)
-
-
-
-
-print leap_year
+import datetime
+#
+# def include_month_year(sm):
+#
+#         if sm >= 3:
+#             return False
+#
+#         else:
+#             return True
+#
+#         #if starting month is greater then 3 then we should not include the month
+#
+#          # if starting month is less then 3 then we should include the month
+#
+# def include_day_year(sm, sd)
+#
+#     if sm == 2:
+#
+#         if sd <=29:
+#             return true
+#
+#
+#
+#
+#
+#      # extending February to 29 days rather than 28
+#
+#         if starting month is 2 then the day should be less then 29 to include
+#
+#
+#
+#
+#
+#
+#
+#
+# leap_year=()
+# for cy in range(cy,ey,1):
+#
+#     if is_leap(cy):
+#         leap_year.extend(cy)
+#
+#
+#
+#
+# print leap_year
 
 def main():
-    print "Input a starting day(1-31)?"
-    if input in range(1, 31):
-        sd = int(input())
 
-    print "Input a starting month(1-12)?"
-    if input in range(1, 12):
-        sm = int(input())
+    def inputdate(prompt):
+        d = int(raw_input('Enter ' + prompt + 'day(1-31): '))
+        while(d not in range(1,31)):
+            d = int(raw_input('Enter ' + prompt + ' day(1-31): '))
 
-    print "Input a starting year?"
-    sy = int(input())
+        m = int(raw_input('Input a ' + prompt + ' month(1-12)?: '))
+        while (m not in range(1, 12)):
+            m = int(raw_input('Input a ' + prompt + ' month(1-12)?: '))
 
+        y = int(raw_input('Enter ' + prompt + ' year: '))
+
+        output = tuple(y,m,d)
+        return output
     ##################################################################
 
-    print "Input a ending day(1-31)?"
-    if input in range(1, 31):
-        ed = int(input())
+    startnum = inputdate('starting')
 
-    print "Input a ending month(1-12)?"
-    if input in range(1, 12):
-        em = int(input())
+    endnum = inputdate('ending')
 
-    print "Input a ending year?"
-    ey = int(input())
+    startdate = datetime.date(*startnum)
+    enddate = datetime.date(*endnum)
+
+    if not startdate<=datetime.date(startdate.year,2,28):
+        startdate = datetime.date(startdate.year+1,startdate.month,startdate.day)
+
+    if not enddate>=datetime.date(enddate.year,2,28):
+        enddate = datetime.date(enddate.year-1,enddate.month,enddate.day)
+
+    sy = startdate.year
+    ey = enddate.year
+
+
+    print 'Leap years between', sy, 'and', ey, 'inclusive'
+    while sy <= ey:
+        if sy % 4 == 0 and sy % 100 != 0:
+            print sy
+        if sy % 100 == 0 and sy % 400 == 0:
+            print sy
+        sy = sy + 1
+
 
 main()
