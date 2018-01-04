@@ -48,19 +48,18 @@ import datetime
 def main():
 
     def inputdate(prompt):
-        d = int(raw_input('Enter ' + prompt + 'day(1-31): '))
-        while(d not in range(1,31)):
+
+        d = int(raw_input('Enter ' + prompt + ' day(1-31): '))
+        while(d not in range(1,32)):
             d = int(raw_input('Enter ' + prompt + ' day(1-31): '))
 
         m = int(raw_input('Input a ' + prompt + ' month(1-12)?: '))
-        while (m not in range(1, 12)):
+        while (m not in range(1, 13)):
             m = int(raw_input('Input a ' + prompt + ' month(1-12)?: '))
 
         y = int(raw_input('Enter ' + prompt + ' year: '))
 
-        output = tuple(y,m,d)
-        return output
-    ##################################################################
+        return y, m, d
 
     startnum = inputdate('starting')
 
